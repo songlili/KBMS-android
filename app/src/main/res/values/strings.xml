@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">知识库管理系统</string>
+
+    <string name="content_description">can you see me?</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu icons-->
+    <string name="menu_home">主页</string>
+    <string name="menu_music">音频</string>
+    <string name="menu_doc">文档</string>
+    <string name="menu_gallery">图片</string>
+    <string name="menu_video">视频</string>
+    <string name="menu_settings">设置</string>
+
+    <!--Others -->
+    <string name="test">测试文字</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_blank">blankActivity</string>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UI.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.cwp.kbms.Fragment.HomeFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/doc_fragment"
+        android:name="com.cwp.kbms.Fragment.DocFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_doc" />
+
+    <fragment
+        android:id="@+id/pic_fragment"
+        android:name="com.cwp.kbms.Fragment.PicFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_pic" />
+
+    <fragment
+        android:id="@+id/video_fragment"
+        android:name="com.cwp.kbms.Fragment.VideoFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_video" />
+
+    <fragment
+        android:id="@+id/audio_fragment"
+        android:name="com.cwp.kbms.Fragment.MusicFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_music" />
+</FrameLayout>
