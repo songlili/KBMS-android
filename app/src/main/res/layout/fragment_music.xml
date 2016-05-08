@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.cwp.kbms.Fragment.MusicFragment">
 
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/app_name"/>
 
     <ListView
         android:id="@+id/audio_list"

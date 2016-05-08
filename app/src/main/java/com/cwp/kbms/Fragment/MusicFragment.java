@@ -4,16 +4,25 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.cwp.kbms.Adapter.FileListAdapter;
+import com.cwp.kbms.Http.HttpClient;
 import com.cwp.kbms.R;
 import com.cwp.kbms.Util.HintUtil;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,10 +35,15 @@ import java.util.ArrayList;
  */
 public class MusicFragment extends Fragment implements AdapterView.OnItemClickListener {
 
+    private final static String url =
+            "http://192.168.173.1:8080/kb/user/category?userID=9";
 
     private FileListAdapter adapter;
     private ListView listView;
+    private TextView tv;
     private ArrayList<String> list;
+    private String jsonResult;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,18 +96,56 @@ public class MusicFragment extends Fragment implements AdapterView.OnItemClickLi
         }
 
         adapter = new FileListAdapter(list, getActivity(), R.drawable.ic_menu_music);
+
+
     }
+
+    Runnable runable = new Runnable() {
+        @Override
+        public void run() {
+            //// TODO: 2016/4/29 网络操作
+            jsonResult = HttpClient.getStringFromUrl(url);
+            Message msg = new Message();
+            Bundle data = new Bundle();
+            data.putString("value", "result");
+            msg.setData(data);
+            handler.sendMessage(msg);
+        }
+    };
+
+
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Bundle data = msg.getData();
+            String val = data.getString("value");
+            Log.i("mylog", "请求结果为--->" + val);
+
+            //// TODO: 2016/4/29 界面操作
+            tv.setText(jsonResult);
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music, container, false);
+
         listView = (ListView) view.findViewById(R.id.audio_list);
-        listView.setAdapter(adapter);
+//        listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+
+        tv = (TextView) view.findViewById(R.id.test);
+        new Thread(runable).start();
+
+
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
